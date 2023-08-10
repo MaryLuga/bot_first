@@ -9,3 +9,4 @@ def send(text):
     resp = requests.get(url)
     r= resp.json()
     return
+ print("hi")
