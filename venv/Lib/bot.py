@@ -8,5 +8,5 @@ def send(text):
     url = "https://api.telegram.org/bot'+token+'/sendMessage?chat_id='+id+'&text='+text+'"
     resp = requests.get(url)
     r= resp.json()
-    return
- print("hi")
+
+send("bitcoin")
