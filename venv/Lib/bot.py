@@ -1,29 +1,16 @@
-import telebot
-bot = telebot.TeleBot("6080573579:AAFQToJ_NQNHhHAQ24vJD85FZbSkFZPxzC8")
-token = "6080573579:AAFQToJ_NQNHhHAQ24vJD85FZbSkFZPxzC8"
-id = "1657110493"
-import requests
-import json
-from telegram import Bot
-from telegram import Update
-from telegram.ext import Updater
-from telegram.ext import MessageHandler
-#from telegram.ext import Filters
+import asyncio
+import logging
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters.command import Command
 
-def send(text):
-    url = "https://api.telegram.org/bot'+token+'/sendMessage?chat_id='+id+'&text='+text+'"
-    resp = requests.get(url)
-    r = resp.json()
-    return
+# Включаем логирование, чтобы не пропустить важные сообщения
+logging.basicConfig(level=logging.INFO)
+# Объект бота
+bot = Bot(token="6080573579:AAFQToJ_NQNHhHAQ24vJD85FZbSkFZPxzC8")
+# Диспетчер
+dp = Dispatcher()
 
-send("bitcoin")
-
-print("hi")
-#from aiogram import executor
-#from app import telebot
-#executor.start_polling(bot.dp,
-#                       skip_updates=True,
-#                       on_shutdown=telebot.on_shutdown)
-
-#token = "6080573579:AAFQToJ_NQNHhHAQ24vJD85FZbSkFZPxzC8"
-
+# Хэндлер на команду /start
+@dp.message(Command("start"))
+async def cmd_start(message: types.Message):
+    await message.answer("Hello!")
